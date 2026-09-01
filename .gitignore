@@ -1,0 +1,6 @@
+.DS_Store
+scripts/
+tests/
+.pytest_cache/
+config.json
+broker_names.csv

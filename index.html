@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f3f1ec">
+  <meta name="description" content="7924 TLC-KY 興櫃主力分點追蹤，特別觀察分點 9359 的買賣、庫存與推估成本。">
+  <title>7924 TLC-KY｜9359 分點雷達</title>
+  <link rel="stylesheet" href="./assets/app.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#overview" aria-label="回到總覽"><span>7924</span><b>TLC-KY</b></a>
+    <div class="fresh"><i></i><span id="data-status">載入資料</span></div>
+  </header>
+
+  <main>
+    <section class="hero" id="overview">
+      <div class="eyebrow">EMERGING STOCK · BROKER FLOW</div>
+      <div class="hero-grid">
+        <div>
+          <p class="kicker">主力行為追蹤站</p>
+          <h1>看懂籌碼，<br><em>不猜身分。</em></h1>
+          <p class="lead">以 7924 TLC-KY 每日興櫃成交與券商分點資料，追蹤資金留存、成本與影響力；9359 為指定觀察節點。</p>
+        </div>
+        <div class="quote-card">
+          <div class="quote-head"><span>加權均價</span><small id="as-of">—</small></div>
+          <strong id="price">—</strong>
+          <span class="change" id="change">—</span>
+          <div class="signal-row"><div class="score" id="score">—</div><div><small>市場判讀</small><b id="signal">載入中</b></div></div>
+        </div>
+      </div>
+      <div class="market-strip">
+        <article><span>成交量</span><b id="volume">—</b></article>
+        <article><span>籌碼集中</span><b id="concentration">—</b></article>
+        <article><span>核心分點</span><b>20 家</b></article>
+        <article><span>資料狀態</span><b id="quality">核對中</b></article>
+      </div>
+    </section>
+
+    <section class="section spotlight" id="spotlight">
+      <div class="section-title">
+        <div><span>SPOTLIGHT NODE</span><h2>9359 特別追蹤</h2></div>
+        <p>固定顯示，不因是否進入核心榜而消失。</p>
+      </div>
+      <div class="spot-grid">
+        <article class="spot-main">
+          <div class="spot-head"><div><span class="tag">9359</span><h3 id="spot-name">—</h3></div><span class="state" id="spot-state">—</span></div>
+          <div class="spot-rank"><div><small>歷史資金排名</small><strong id="spot-rank">—</strong></div><p id="spot-core">—</p></div>
+          <div class="period-tabs" role="group" aria-label="9359 觀察期間">
+            <button class="active" data-window="1">今日</button><button data-window="5">5 日</button><button data-window="10">10 日</button><button data-window="20">20 日</button>
+          </div>
+          <div class="flow-number"><span>期間淨買賣</span><strong id="spot-net">—</strong></div>
+          <div class="flow-track"><i id="spot-bar"></i></div>
+          <div class="buy-sell"><span>買進 <b id="spot-buy">—</b></span><span>賣出 <b id="spot-sell">—</b></span></div>
+        </article>
+        <div class="spot-metrics">
+          <article><span>累積淨投入</span><b id="spot-capital">—</b><small>全歷史樣本</small></article>
+          <article><span>推估庫存</span><b id="spot-inventory">—</b><small id="spot-retention">留存率 —</small></article>
+          <article><span>推估成本</span><b id="spot-cost">—</b><small id="spot-cost-gap">現價差 —</small></article>
+          <article><span>活躍程度</span><b id="spot-active">—</b><small id="spot-confidence">證據成熟度 —</small></article>
+        </div>
+      </div>
+      <div class="evidence-note"><b>判讀邊界</b><p>9359 是券商分點代號，也是本頁的行為觀察節點。排名、淨買賣與成本估算只描述可見交易行為，不證明共同控制或實質受益人身分。</p></div>
+    </section>
+
+    <section class="section" id="brokers">
+      <div class="section-title">
+        <div><span>CORE FLOW</span><h2>核心資金排行</h2></div>
+        <p>依累積淨投入排序；點選分點展開細節。</p>
+      </div>
+      <div class="filters" role="group" aria-label="核心分點期間">
+        <button class="active" data-period="core">全期</button><button data-period="1">今日</button><button data-period="5">5 日</button><button data-period="10">10 日</button><button data-period="20">20 日</button>
+      </div>
+      <div class="broker-list" id="broker-list"></div>
+    </section>
+
+    <section class="section" id="impact">
+      <div class="section-title">
+        <div><span>PRICE IMPACT</span><h2>隔日方向影響力</h2></div>
+        <p>60 日滾動，未達最低樣本不排名。</p>
+      </div>
+      <div class="impact-list" id="impact-list"></div>
+    </section>
+
+  </main>
+
+  <footer><span>7924 / TLC-KY</span><p>資料研究工具 · 非投資建議</p><a href="#overview">回到頂端 ↑</a></footer>
+  <nav class="mobile-nav"><a href="#overview">總覽</a><a href="#spotlight">9359</a><a href="#brokers">分點</a><a href="#impact">影響力</a></nav>
+  <script src="./assets/app.js" defer></script>
+</body>
+</html>
