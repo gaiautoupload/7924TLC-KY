@@ -67,7 +67,13 @@ function renderBrokers() {
 
 function renderImpact() {
   const rows = state.data.impact_ranking || [];
-  $("#impact-list").innerHTML = rows.length ? rows.map((row, index) => `<article><span>${String(index + 1).padStart(2, "0")}</span><div><b>${row.broker_name}</b><small>${row.samples} 個樣本 · 隔日方向命中 ${Math.round(Number(row.direction_accuracy || 0) * 100)}%</small></div><strong>${num(row.impact_score)}</strong></article>`).join("") : `<div class="empty">影響力樣本尚未達標。</div>`;
+  $("#impact-list").innerHTML = rows.length ? rows.map((row, index) => `<article>
+    <span>${String(index + 1).padStart(2, "0")}</span>
+    <div class="impact-main"><b>${row.broker_name}</b><small>${row.broker_id} · ${row.samples} 個樣本 · 隔日方向命中 ${Math.round(Number(row.direction_accuracy || 0) * 100)}%</small>
+      <div class="today-flow"><span>今日買進 <b>${num(row.today_buy_lots, 3)} 張</b></span><span>今日賣出 <b>${num(row.today_sell_lots, 3)} 張</b></span><span>今日淨額 <b class="${trendClass(row.today_net_lots)}">${signed(row.today_net_lots)}</b></span></div>
+    </div>
+    <div class="impact-score"><small>影響分數</small><strong>${num(row.impact_score)}</strong></div>
+  </article>`).join("") : `<div class="empty">影響力樣本尚未達標。</div>`;
 }
 
 function render(data) {

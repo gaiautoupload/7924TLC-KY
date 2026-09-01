@@ -1396,64 +1396,104 @@
                      },
     "impact_ranking":  [
                            {
+                               "broker_id":  "7007",
                                "broker_name":  "兆豐竹北",
                                "samples":  10,
                                "direction_accuracy":  0.6,
-                               "impact_score":  81.7
+                               "impact_score":  81.7,
+                               "today_buy_lots":  0,
+                               "today_sell_lots":  5,
+                               "today_net_lots":  -5
                            },
                            {
+                               "broker_id":  "6480",
                                "broker_name":  "福邦",
                                "samples":  5,
                                "direction_accuracy":  0.8,
-                               "impact_score":  81.5
+                               "impact_score":  81.5,
+                               "today_buy_lots":  0,
+                               "today_sell_lots":  0,
+                               "today_net_lots":  0
                            },
                            {
+                               "broker_id":  "5382",
                                "broker_name":  "第一金台中",
                                "samples":  6,
                                "direction_accuracy":  0.6667,
-                               "impact_score":  81.1
+                               "impact_score":  81.1,
+                               "today_buy_lots":  0,
+                               "today_sell_lots":  0,
+                               "today_net_lots":  0
                            },
                            {
+                               "broker_id":  "601d",
                                "broker_name":  "奔亞鑫豐",
                                "samples":  6,
                                "direction_accuracy":  0.6667,
-                               "impact_score":  79.7
+                               "impact_score":  79.7,
+                               "today_buy_lots":  0,
+                               "today_sell_lots":  0,
+                               "today_net_lots":  0
                            },
                            {
+                               "broker_id":  "9347",
                                "broker_name":  "永昌敦南",
                                "samples":  14,
                                "direction_accuracy":  0.6429,
-                               "impact_score":  78.8
+                               "impact_score":  78.8,
+                               "today_buy_lots":  0,
+                               "today_sell_lots":  0,
+                               "today_net_lots":  0
                            },
                            {
+                               "broker_id":  "9869",
                                "broker_name":  "元大新盛",
                                "samples":  6,
                                "direction_accuracy":  1.0,
-                               "impact_score":  77.2
+                               "impact_score":  77.2,
+                               "today_buy_lots":  0,
+                               "today_sell_lots":  0,
+                               "today_net_lots":  0
                            },
                            {
+                               "broker_id":  "981q",
                                "broker_name":  "元大萬華",
                                "samples":  10,
                                "direction_accuracy":  0.6,
-                               "impact_score":  76.7
+                               "impact_score":  76.7,
+                               "today_buy_lots":  0.008,
+                               "today_sell_lots":  0,
+                               "today_net_lots":  0.008
                            },
                            {
+                               "broker_id":  "5383",
                                "broker_name":  "第一金高雄",
                                "samples":  22,
                                "direction_accuracy":  0.5909,
-                               "impact_score":  76.2
+                               "impact_score":  76.2,
+                               "today_buy_lots":  0,
+                               "today_sell_lots":  0,
+                               "today_net_lots":  0
                            },
                            {
+                               "broker_id":  "8456",
                                "broker_name":  "康和新竹",
                                "samples":  5,
                                "direction_accuracy":  0.8,
-                               "impact_score":  75.8
+                               "impact_score":  75.8,
+                               "today_buy_lots":  0,
+                               "today_sell_lots":  0,
+                               "today_net_lots":  0
                            },
                            {
+                               "broker_id":  "7006",
                                "broker_name":  "兆豐台南",
                                "samples":  8,
                                "direction_accuracy":  0.5,
-                               "impact_score":  74.5
+                               "impact_score":  74.5,
+                               "today_buy_lots":  0,
+                               "today_sell_lots":  0,
+                               "today_net_lots":  0
                            }
                        ]
 }
