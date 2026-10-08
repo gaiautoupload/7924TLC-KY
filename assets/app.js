@@ -4,6 +4,7 @@ const all = (selector) => [...document.querySelectorAll(selector)];
 const num = (value, digits = 1) => Number(value || 0).toLocaleString("zh-TW", { maximumFractionDigits: digits });
 const signed = (value, unit = "張") => `${Number(value) > 0 ? "+" : Number(value) < 0 ? "−" : ""}${num(Math.abs(Number(value)), 2)} ${unit}`;
 const money = (value) => {
+  if (value === null || value === undefined) return "—";
   const amount = Math.abs(Number(value || 0));
   const sign = Number(value) > 0 ? "+" : Number(value) < 0 ? "−" : "";
   if (amount >= 1e8) return `${sign}${num(amount / 1e8, 2)} 億`;
@@ -42,22 +43,25 @@ function renderSpotlight() {
 
 function brokerCard(broker, index) {
   const open = state.expanded === broker.broker_id;
+  const daily = state.period === "1";
+  const average = Number(broker.net_lots) >= 0 ? broker.buy_avg_price : broker.sell_avg_price;
   const isSpot = broker.broker_id === "9359";
   return `<button class="broker-card ${isSpot ? "spot" : ""}" data-broker="${broker.broker_id}">
     <span class="rank">${String(index + 1).padStart(2, "0")}</span>
     <span class="name"><b>${broker.broker_name}${isSpot ? " · 9359" : ""}</b><small>${broker.broker_id}</small></span>
     <span class="cell"><small>期間淨額</small><b class="${trendClass(broker.net_amount)}">${money(broker.net_amount)}</b></span>
     <span class="cell"><small>期間淨張數</small><b class="${trendClass(broker.net_lots)}">${signed(broker.net_lots)}</b></span>
-    <span class="cell"><small>推估成本</small><b>${broker.inventory_cost ? num(broker.inventory_cost, 2) : "—"}</b></span>
+    <span class="cell"><small>${daily ? (Number(broker.net_lots) >= 0 ? "買進均價" : "賣出均價") : "推估成本"}</small><b>${daily ? (average == null ? "—" : num(average, 2)) : broker.inventory_cost ? num(broker.inventory_cost, 2) : "—"}</b></span>
     <span class="arrow">${open ? "−" : "+"}</span>
-    ${open ? `<span class="broker-detail"><span>累積淨投入<b>${money(broker.cumulative_net_amount)}</b></span><span>推估庫存<b>${num(broker.inventory_lots, 2)} 張</b></span><span>活躍交易日<b>${broker.active_sessions}/${broker.history_sessions}</b></span><span>方向命中率<b>${broker.win_rate_qualified ? `${num(broker.win_rate)}%` : "樣本累積中"}</b></span></span>` : ""}
+    ${open && daily ? `<span class="broker-detail"><span>買進<b>${num(broker.buy_lots, 3)} 張</b></span><span>賣出<b>${num(broker.sell_lots, 3)} 張</b></span><span>買進均價<b>${broker.buy_avg_price == null ? "—" : num(broker.buy_avg_price, 2)}</b></span><span>賣出均價<b>${broker.sell_avg_price == null ? "—" : num(broker.sell_avg_price, 2)}</b></span></span>` : open ? `<span class="broker-detail"><span>累積淨投入<b>${money(broker.cumulative_net_amount)}</b></span><span>推估庫存<b>${num(broker.inventory_lots, 2)} 張</b></span><span>活躍交易日<b>${broker.active_sessions}/${broker.history_sessions}</b></span><span>方向命中率<b>${broker.win_rate_qualified ? `${num(broker.win_rate)}%` : "樣本累積中"}</b></span></span>` : ""}
   </button>`;
 }
 
 function renderBrokers() {
   const windowData = state.data.flow_windows?.[state.period] || { brokers: [] };
   let brokers = [...(windowData.brokers || [])];
-  if (state.period !== "core") brokers.sort((a, b) => Number(b.net_amount) - Number(a.net_amount));
+  if (state.period !== "core") brokers.sort((a, b) => Number(b.net_lots) - Number(a.net_lots));
+  $("#broker-heading").textContent = state.period === "1" ? `全市場當日分點 ${brokers.length}` : "核心資金排行";
   $("#broker-list").innerHTML = brokers.length ? brokers.map(brokerCard).join("") : `<div class="empty">這段期間沒有可顯示的核心分點資料。</div>`;
   all(".broker-card").forEach((button) => button.addEventListener("click", () => {
     state.expanded = state.expanded === button.dataset.broker ? null : button.dataset.broker;
@@ -88,7 +92,7 @@ function render(data) {
   $("#score").textContent = data.signal?.score ?? "—";
   $("#signal").textContent = data.signal?.label || "資料不足";
   $("#volume").textContent = `${num(market.volume_lots, 0)} 張`;
-  $("#concentration").textContent = `${signed(market.concentration_lots)}`;
+  $("#concentration").textContent = market.concentration_lots == null ? "資料未提供" : signed(market.concentration_lots);
   $("#concentration").className = trendClass(market.concentration_lots);
   $("#quality").textContent = data.data_mode === "live" ? "行情 / 分點齊全" : "非即時資料";
   renderSpotlight(); renderBrokers(); renderImpact();
