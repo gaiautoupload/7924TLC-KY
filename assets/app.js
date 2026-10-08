@@ -2,7 +2,7 @@ const state = { data: null, spotWindow: "1", period: "core", expanded: null };
 const $ = (selector) => document.querySelector(selector);
 const all = (selector) => [...document.querySelectorAll(selector)];
 const num = (value, digits = 1) => Number(value || 0).toLocaleString("zh-TW", { maximumFractionDigits: digits });
-const signed = (value, unit = "張") => `${Number(value) > 0 ? "+" : Number(value) < 0 ? "−" : ""}${num(Math.abs(Number(value)), 2)} ${unit}`;
+const signed = (value, unit = "張") => `${Number(value) > 0 ? "+" : Number(value) < 0 ? "−" : ""}${num(Math.abs(Number(value)), 3)} ${unit}`;
 const money = (value) => {
   if (value === null || value === undefined) return "—";
   const amount = Math.abs(Number(value || 0));
